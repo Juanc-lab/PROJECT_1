@@ -154,4 +154,262 @@ round(ac(5),1)
 #rm(ac)
 #ac(5)
 ```
+# 3. DATA FRAMES Y PLOTS #########
+##1. Introdución de datos como vectores c(x1,x2,....xn) 
+```{r}
+# ejemplo del cambio de velocidad [m/s] de un automovil a medida que transcurre el tiempo t[seg]
+tiempo <- c(0,1,2,3,4,5,6,7,8,9)
+velocidad <- c(0,2,4,6,8,10,12,14,16,18)
+
+# creamos una tabla de datos, en R se llama data.frame
+datos1 <- data.frame(tiempo, velocidad)
+datos1
+
+#Para acceder a los datos de una columna usamos el signo $
+  
+datos1$tiempo
+
+datos1$velocidad
+
+# para graficar los anteriores datos, usamos la función plot(x,y)
+# x e y deben tener la misma longitud
+plot(datos1$tiempo, datos1$velocidad)
+
+
+# otra manera
+
+plot(datos1)
+
+
+# problema
+
+#Realizar un gráfico de inverso; es decir, de tiempo vs velocidad
+```
+# 4. regresiones lineales
+Con los siguientes datos realizaremos la recta de regresión lineal 
+```{r}
+tiempo2 <- c(0,1,2,3,4,5,6,7,8,9)
+velocidad2 <- c(1.5,3,2.5,4,5.6,6,7.2,9.1,8.7,10)
+# creamos la tabla de datos - data frame
+datos2 <- data.frame(tiempo2,velocidad2)
+
+datos2
+
+plot(datos2)
+# La función de regresión lineal viene dada por la función lm(y~x)
+# Recta de regresión de la variable "y" en funcion de la variable "x"
+
+# ejecutamos la función lm() asignandole el nombre rl_velocidad_tiempo
+reglin_velocidad2_tiempo2 <-lm(velocidad2~tiempo2, data=datos2)
+reglin_velocidad2_tiempo2
+#otros datos estadisticos con la función summary()
+summary(reglin_velocidad2_tiempo2)
+# para graficar la recta, utilizamos la función abline
+abline(reglin_velocidad2_tiempo2, col = "red")
+```
+# 5. construccion de vectores
+## clases de vectores
+```{r}
+
+#1. Vectores numéricos----------------------------------
+x <- c(1,2,3,4,5)
+x
+
+###     ¿Cómo saber? ###
+#### mode(nombreObjeto)
+#### typeof(nombreObjeto)
+
+typeof(x)
+
+# 2. Vectores con carácteres----------------------------
+
+letras <- c("a","b","casa","gato","perro","carro","tia")
+letras
+typeof(letras)
+
+# 3. Vector lógico------------------------
+logico <- c(FALSE,TRUE)
+logico
+typeof(logico)
+mode(logico)
+
+
+# 4. Vector de números complejos---------------------
+
+complejos <- c(4i,3+7i,9i,12i)
+complejos
+mode(complejos)
+
+# 5. Factores en vectores------------------------
+genero<- (c("M","M","M","H","H")) 
+typeof(genero)
+genero2<- as.factor(genero)
+genero2
+
+# 5.1 otro ejemplo
+
+clases<- c(1,2,3,3,3,3,3,2,2,3,2,3,1)
+typeof(clases)
+clases2<-as.factor(clases)
+clases2
+
+```
+## 5.1 concatenar 2 o mas vectores
+```{r}
+ 
+union <- c(x,letras, complejos,5000)
+union
+# cuando se une vectores de diferentes clases, 
+#r los interpreta como un único vector de clase " Character"
+typeof(union)
+
+# 7. Otras formas de construir vectores------------------
+
+# 7.1 Funcion Rep construir vectores repitiendo datos   rep(x, n)--------------
+
+a <- rep(2,10)
+a
+
+#7.1.1 Función rep(vector, times=n)--repite n veces en bloque el vector
+
+s<- c(1,2,3)
+
+s1<- rep(s, times =4)
+s1
+
+
+#7.1.2 Función rep(vector, each=n)--repite n veces cada entrada del vector
+
+s<- c(1,2,3)
+s2<- rep(s, each =4)
+s2
+
+# 8. progresiones artiméticas------------------------------
+
+#Con la función "seq" inicio-final y los saltos
+
+seq(0,30, by =5)
+
+seq(100,12,by=-5)
+
+# de otra manera :
+
+0:10
+20:0
+
+
+# 9. Dar nombres a los elementos de un vector---------------
+
+
+# # # # # #  DAR NOMBRE A LOS ELEMENTOS
+
+x<- c(1,2,3)
+names(x)<- c("Alex", "Beto", "Carlos")
+x
+
+
+#Otro ejemplo
+
+NOTAS<- c(4,4,4,4,1,4,5,2,5,5,3,3,4,5)
+names(NOTAS)<- c("LUIS","MARIO", "MARIA","TERESA" ,"DANIEL", "FELIPE","JHON","CHRISTIAN",
+                 "KARINA","RUBEN","MARCO","JOACHIM" ,"FERNANDO","ALFONSO")
+NOTAS
+
+
+
+```
+#5.2. EXPLORACIÓN DE VECTORES
+length(x)= suma los elementos de x
+prod(x)= Producto de los elementos de x
+max(x)= Valor máximo en el objeto x
+min(x) = Valor mínimo en el objeto x
+which.max(x) = devuelve el índice del elemento máximo de x
+which.min(x) = devuelve el índice del elemento mínimo de x
+
+# 5.3 Estadísticos descriptivos--------------------
+
+mean(x)= promedio de los elementos de x
+median(x)= mediana de los elementos de x
+var(x)= varianza de los elementos de x (calculada en n-1)
+cov(x)= covarianza de los elementos de x
+
+# 5.4 OTROS OPERADORES---------------------
+
+round(x)= redondea los elémentos de x a n cifras decimales
+rev(x)= invierte el orden en los elementos de x
+sort(x)= oredena los elementos de x en forma ascendente,descendente "rev(sort(x))"
+match(x,y)= devuelve un vector de la misma longitud que x que estan en y (NA si no)
+which(x==a)= devuelve un vector de  los indices de x si la operación es (TRUE)(En este 
+#ejemplo
+#los valores de i para los cuales x[i]==a). El argumento de esta función debe ser una variable de tipo lógico
+#unique(x)= si x es un vector o un marco de datos, devuelve un objeto similar pero suprimiendo los elementos ducplicados
+```{r}
+
+
+
+#11.USO DE OPERADORES
+#para este punto utilizaremos lo datos Rivers "Lengths of Major North American Rivers"
+#que vienen dentro de los paquetes de ayuda en data()
+
+data()
+rivers
+rios<- rivers
+rios
+
+# 10.1 Cuantos datos? length()
+
+
+length(rios) #Cuantos datos?
+sum(rios) # suma de todos los datos del vector
+# escoger datos puntuales de un vector []
+
+rios[1]
+rios[c(1,2)]
+
+# cual es el río mas largo ?
+which.max(rios)
+# cual es la longitud ?
+rios[68]
+
+# cual es el río mas corto?
+which.min(rios)
+# cual es la longitud ?
+rios[8]
+
+# estadisticos
+# cual es el promedio de longitud de los ríos
+mean(rios)
+# redondear el promedio a un decimal
+round(mean(rios),1)
+
+# cual es la mediana y var?
+median(rios)
+var(x)
+
+# ordenar los elementos de rios en forma ascendente y guardarlo en la variable a
+
+a<- sort(rios)
+
+# ordenar de manera descendente
+
+rev(a)
+
+# #match(x,y)= devuelve un vector de la misma longitud que x que estan en y (NA si no)
+
+edades1 <- c(12,15,6,9,8,4,16,36,19,25,34,37,42)
+edades2 <- c(12,15,68,75,43,98,72,69,83,44,42,21,46)
+match(edades1,edades2)
+
+#valores identicos 
+
+which(edades1==edades2)
+
+# valores únicos
+edades3 <- c(5,3,5,4,3,5,4,3,5,4,3,5,4,4,5,3)
+unique(edades3)
+
+
+plot(edades3)
+
+```
 
