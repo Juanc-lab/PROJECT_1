@@ -107,3 +107,51 @@ floor(sqrt(2))
 # trunc() trunca a su parte entera
 trunc(sqrt(2))
 ```
+# 2. Funciones
+## 2.1 funciones con una variable 
+```{r}
+
+# ejemplo 1
+f<- function(x){x^2}
+f(5)
+
+# ejemplo 2
+
+# Distancia = velocidad * tiempo 
+# un automovil que se mueve a una velocidad contante de 20km/h. 
+#Que distancia recorrera al cabo de tres horas?
+
+distancia <- function(t){20*t}
+distancia(3)
+
+#2.2 funciones con dos variables
+
+# Cálculo de la hipotenusa de un triangulo rectangulo con el teorema de Pitagoras
+
+hip <- function(co,ca){sqrt(co^2+ca^2)}
+hip(4,3)
+
+
+```
+#2.3 funciones combinadas
+##La funcion j de variable co es igual al cálculo de la hipotenusa con la funcion hip 
+##teniendo en cuenta que el ca es igual a co +2
+```{r}
+
+j<- function(co){ca <- co+2; hip(co,ca)}
+j(5)
+
+# calcular el área de un circulo ac para diferentes radios
+
+ac <- function(r){pi*r^2}
+ac(5)
+
+# redondeando el resultado del área del circulo a un solo decimal
+round(ac(5),1)
+
+#3. Remover variables del ambiente  (rm)----------------
+
+#rm(ac)
+#ac(5)
+```
+
