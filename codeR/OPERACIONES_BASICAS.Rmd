@@ -1,0 +1,109 @@
+---
+title: "COMANDOS BASICOS R"
+author: "Camilo Pérez"
+date: "24 de enero de 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Operaciones básicas y funciones con números reales.
+## 1. R como calculadora 
+###ubicarse en la linea de cada operación  y pulsar Ctrl + Enter
+```{r cars}
+
+# 1. los números decimales van separados por punto (.)----------------------
+
+2.5 +3.5
+#2,5+3,5  # error
+
+
+```
+
+## 2. exponentes
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+
+5^2
+5^2*3
+5^(2*3)
+
+
+```
+## 3. división
+```{r}
+5/2
+5/2*3
+5/(2*3)
+
+```
+## 4. Cociente entero %%
+
+```{r}
+# 4. Cociente entero %%
+47%%6 
+
+
+```
+## 5. numero pi
+```{r}
+pi
+2*pi
+
+
+```
+
+## 6. logaritmos
+```{r}
+
+log10(100)
+
+log(100)
+
+
+```
+## 7.exponenciales
+```{r}
+exp(1)
+
+```
+## 8. Funciones trigonométricas
+```{r}
+
+ -------------------
+#(R entiende los argumentos del ángulo en Radianes)
+
+cos(60)
+
+cos(60*pi/180)
+
+
+```
+## 9. Cifras significativas
+```{r}
+
+
+sqrt(2) 
+
+print(sqrt(2),15)
+
+
+```
+# 10. Redondear números
+```{r}
+# round(x,n) redondea x  a n cifras decimales
+
+sqrt(2)
+
+round(sqrt(2),1)
+
+# floor(x) redondea a un entero por defecto 
+floor(sqrt(2))
+
+# trunc() trunca a su parte entera
+trunc(sqrt(2))
+```
