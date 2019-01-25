@@ -408,8 +408,57 @@ which(edades1==edades2)
 edades3 <- c(5,3,5,4,3,5,4,3,5,4,3,5,4,4,5,3)
 unique(edades3)
 
+```
 
-plot(edades3)
+# 7. RUTA DE TRABAJO-LECTURA DE ARCHIVO DE DATOS
 
+```{r}
+library(ggplot2)
+library(readr) 
+
+
+manizales <- read.csv("D:/CURSOS/Edx_R/HOME/PROJECTS/PROJECT_1/data/manizales_ppt.csv",header = FALSE, sep =",")
+
+manizales
+
+
+```
+## 7.1 cambiar de nombres
+```{r}
+names(manizales)<- c("YEAR", "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE", "TOTAL_ANUAL")
+
+View(manizales)
+
+
+
+```
+## 7.3 qplot 
+```{r}
+
+# graficar year vs ENERO
+qplot(manizales$YEAR,manizales$ENERO, color = manizales$ENERO, geom = "point")+
+  theme_bw()
+
+```
+
+## 7.4seleccion de columnas especificas
+
+
+```{r}
+
+#seleccionar la primera y septima columna
+jun_manizales<- manizales[,c(1,7)]
+
+jun_manizales
+
+
+```
+## 7.5 GUARDAR LA TABLA 
+
+```{r}
+
+write.csv(jun_manizales, file = "D:/CURSOS/Edx_R/HOME/PROJECTS/PROJECT_1/data/jun_manizales.csv", append = FALSE, row.names = TRUE)
+
+read.csv("D:/CURSOS/Edx_R/HOME/PROJECTS/PROJECT_1/data/jun_manizales.csv",header = TRUE, sep =",")
 ```
 
